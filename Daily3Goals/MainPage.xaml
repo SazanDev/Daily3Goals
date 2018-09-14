@@ -11,15 +11,21 @@
             HorizontalOptions="Center" />
         <Label Text="{Binding Date}" />
         <StackLayout Orientation="Horizontal">
-            <Entry HorizontalOptions="FillAndExpand" Placeholder="Goal" />
+            <Entry HorizontalOptions="FillAndExpand"
+                Placeholder="Goal"
+                Text="{Binding Goal1}" />
             <Button Text="Done" />
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-            <Entry HorizontalOptions="FillAndExpand" Placeholder="Goal" />
+            <Entry HorizontalOptions="FillAndExpand"
+                Placeholder="Goal"
+                Text="{Binding Goal2}" />
             <Button Text="Done" />
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-            <Entry HorizontalOptions="FillAndExpand" Placeholder="Goal" />
+            <Entry HorizontalOptions="FillAndExpand"
+                Placeholder="Goal"
+                Text="{Binding Goal3}" />
             <Button Text="Done" />
         </StackLayout>
     </StackLayout>
