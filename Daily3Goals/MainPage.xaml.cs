@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Daily3Goals
 {
     public partial class MainPage : ContentPage
     {
+        DateTime date;
+
         public MainPage()
         {
+            date = DateTime.Now;
+
             InitializeComponent();
         }
+
+        public string Date => date.ToString("dddd, MMMM dd, yyyy");
     }
 }

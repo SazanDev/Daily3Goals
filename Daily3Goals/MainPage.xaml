@@ -2,12 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Daily3Goals"
-    x:Class="Daily3Goals.MainPage">
+    x:Class="Daily3Goals.MainPage"
+    x:Name="This"
+    BindingContext="{x:Reference This}">
     <StackLayout>
         <!-- Place new controls here -->
         <Label Text="Daily 3 Goals"
             HorizontalOptions="Center" />
-        <Label Text="September 1, 2018"/>
+        <Label Text="{Binding Date}" />
         <StackLayout Orientation="Horizontal">
             <Entry HorizontalOptions="FillAndExpand" Placeholder="Goal" />
             <Button Text="Done" />
