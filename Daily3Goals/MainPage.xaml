@@ -5,6 +5,11 @@
     x:Class="Daily3Goals.MainPage"
     x:Name="This"
     BindingContext="{x:Reference This}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:DoneToColorConverter x:Key="doneToColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <StackLayout>
         <!-- Place new controls here -->
         <Label Text="Daily 3 Goals"
@@ -14,19 +19,28 @@
             <Entry HorizontalOptions="FillAndExpand"
                 Placeholder="Goal"
                 Text="{Binding Goal1}" />
-            <Button Text="Done" />
+            <Button Text="Done"
+                BackgroundColor="{Binding Goal1Done, Converter={StaticResource doneToColorConverter}}"
+                Command="{Binding DoneCommand}"
+                CommandParameter="{x:Int32 0}" />
         </StackLayout>
         <StackLayout Orientation="Horizontal">
             <Entry HorizontalOptions="FillAndExpand"
                 Placeholder="Goal"
                 Text="{Binding Goal2}" />
-            <Button Text="Done" />
+            <Button Text="Done"
+                BackgroundColor="{Binding Goal2Done, Converter={StaticResource doneToColorConverter}}"
+                Command="{Binding DoneCommand}"
+                CommandParameter="{x:Int32 1}" />
         </StackLayout>
         <StackLayout Orientation="Horizontal">
             <Entry HorizontalOptions="FillAndExpand"
                 Placeholder="Goal"
                 Text="{Binding Goal3}" />
-            <Button Text="Done" />
+            <Button Text="Done"
+                BackgroundColor="{Binding Goal3Done, Converter={StaticResource doneToColorConverter}}"
+                Command="{Binding DoneCommand}"
+                CommandParameter="{x:Int32 2}" />
         </StackLayout>
     </StackLayout>
 </ContentPage>

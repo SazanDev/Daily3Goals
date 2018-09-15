@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Daily3Goals
@@ -23,9 +25,14 @@ namespace Daily3Goals
             goals.Add(goalTemplate);
             goals.Add(goalTemplate);
 
-            Goal1 = "Yasss";
-
             date = DateTime.Now;
+
+            DoneCommand = new Command<int>(index => {
+                Goal goal = goals[index];
+                goal.Done = !goal.Done;
+                goals[index] = goal;
+                OnPropertyChanged("Goal" + (index + 1) + "Done");
+            });
 
             InitializeComponent();
         }
@@ -67,5 +74,13 @@ namespace Daily3Goals
                 }
             }
         }
+
+        public bool Goal1Done => goals[0].Done;
+
+        public bool Goal2Done => goals[1].Done;
+
+        public bool Goal3Done => goals[2].Done;
+
+        public ICommand DoneCommand { get; private set; }
     }
 }
