@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Input;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace Daily3Goals
@@ -32,6 +33,12 @@ namespace Daily3Goals
                 goal.Done = !goal.Done;
                 goals[index] = goal;
                 OnPropertyChanged("Goal" + (index + 1) + "Done");
+            });
+
+            Load();
+
+            MessagingCenter.Subscribe<App>(this, "OnSleep", sender => {
+                Save();
             });
 
             InitializeComponent();
@@ -82,5 +89,25 @@ namespace Daily3Goals
         public bool Goal3Done => goals[2].Done;
 
         public ICommand DoneCommand { get; private set; }
+
+        void Load()
+        {
+            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "goals.json");
+            if (File.Exists(fileName)) {
+                List<Goal> savedGoals = JsonConvert.DeserializeObject<List<Goal>>(File.ReadAllText(fileName));
+                if (savedGoals[0].Date.Year == DateTime.Now.Year
+                    && savedGoals[0].Date.Month == DateTime.Now.Month
+                    && savedGoals[0].Date.Day == DateTime.Now.Day) {
+                    goals = savedGoals;
+                }
+            }
+        }
+
+        void Save()
+        {
+            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "goals.json");
+            string json = JsonConvert.SerializeObject(goals);
+            File.WriteAllText(fileName, json);
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -22,6 +21,7 @@ namespace Daily3Goals
         protected override void OnSleep()
         {
             // Handle when your app sleeps
+            MessagingCenter.Send(this, "OnSleep");
         }
 
         protected override void OnResume()
