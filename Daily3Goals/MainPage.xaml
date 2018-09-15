@@ -1,12 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Daily3Goals"
     x:Class="Daily3Goals.MainPage">
     <StackLayout>
         <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!"
-            HorizontalOptions="Center"
-            VerticalOptions="CenterAndExpand" />
+        <Label Text="Daily 3 Goals"
+            HorizontalOptions="Center" />
+        <Label Text="September 1, 2018"/>
+        <StackLayout Orientation="Horizontal">
+            <Entry HorizontalOptions="FillAndExpand" Placeholder="Goal" />
+            <Button Text="Done" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Entry HorizontalOptions="FillAndExpand" Placeholder="Goal" />
+            <Button Text="Done" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Entry HorizontalOptions="FillAndExpand" Placeholder="Goal" />
+            <Button Text="Done" />
+        </StackLayout>
     </StackLayout>
 </ContentPage>
