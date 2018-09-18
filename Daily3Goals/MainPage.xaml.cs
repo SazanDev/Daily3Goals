@@ -9,19 +9,21 @@ namespace Daily3Goals
 {
     public partial class MainPage : ContentPage
     {
+        // Our 3 goals
         List<Goal> goals;
+        // Current date
         DateTime date;
 
         public MainPage()
         {
             goals = new List<Goal>();
 
+            // All goals start as this
             Goal goalTemplate = new Goal {
                 Date = DateTime.Now,
                 Name = ""
             };
 
-            // Struct is copy by value
             goals.Add(goalTemplate);
             goals.Add(goalTemplate);
             goals.Add(goalTemplate);
@@ -29,14 +31,17 @@ namespace Daily3Goals
             date = DateTime.Now;
 
             DoneCommand = new Command<int>(index => {
+                // Toggle the done property when the done button is pressed
                 Goal goal = goals[index];
                 goal.Done = !goal.Done;
                 goals[index] = goal;
                 OnPropertyChanged("Goal" + (index + 1) + "Done");
             });
 
+            // Load goals from file if any
             Load();
 
+            // Save goal when app goes to background
             MessagingCenter.Subscribe<App>(this, "OnSleep", sender => {
                 Save();
             });
@@ -95,6 +100,7 @@ namespace Daily3Goals
             string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "goals.json");
             if (File.Exists(fileName)) {
                 List<Goal> savedGoals = JsonConvert.DeserializeObject<List<Goal>>(File.ReadAllText(fileName));
+                // Only populate goal if it's the same date as today
                 if (savedGoals[0].Date.Year == DateTime.Now.Year
                     && savedGoals[0].Date.Month == DateTime.Now.Month
                     && savedGoals[0].Date.Day == DateTime.Now.Day) {
