@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Daily3Goals"
-    x:Class="Daily3Goals.MainPage"
+    x:Class="Daily3Goals.GoalsPage"
     x:Name="This"
     BindingContext="{x:Reference This}">
     <ContentPage.Resources>

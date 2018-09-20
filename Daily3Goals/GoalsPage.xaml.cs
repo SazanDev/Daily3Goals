@@ -7,14 +7,14 @@ using Xamarin.Forms;
 
 namespace Daily3Goals
 {
-    public partial class MainPage : ContentPage
+    public partial class GoalsPage : ContentPage
     {
         // Our 3 goals
         List<Goal> goals;
         // Current date
         DateTime date;
 
-        public MainPage()
+        public GoalsPage()
         {
             goals = new List<Goal>();
 
