@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Daily3Goals
@@ -14,7 +15,12 @@ namespace Daily3Goals
 
             InitializeComponent();
 
-            viewModel = new GoalsViewModel(goalRepository.Load(), DateTime.Now);
+            InitializeViewModel();
+        }
+
+        async Task InitializeViewModel()
+        {
+            viewModel = new GoalsViewModel(await goalRepository.Load(), DateTime.Now);
 
             viewModel.GoalsChanged += (sender, goals) => {
                 // Probably shouldn't save right away on every single edit
