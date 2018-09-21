@@ -2,43 +2,36 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Daily3Goals"
-    x:Class="Daily3Goals.MainPage"
-    x:Name="This"
-    BindingContext="{x:Reference This}">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <local:DoneToColorConverter x:Key="doneToColorConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
+    x:Class="Daily3Goals.GoalsPage">
     <StackLayout>
         <!-- Place new controls here -->
         <Label Text="Daily 3 Goals"
             HorizontalOptions="Center" />
-        <Label Text="{Binding Date}" />
+        <Label Text="{Binding DateText}" />
         <StackLayout Orientation="Horizontal">
             <Entry HorizontalOptions="FillAndExpand"
                 Placeholder="Goal"
-                Text="{Binding Goal1}" />
+                Text="{Binding Goal1EntryText}" />
             <Button Text="Done"
-                BackgroundColor="{Binding Goal1Done, Converter={StaticResource doneToColorConverter}}"
+                BackgroundColor="{Binding Goal1DoneButtonColor}"
                 Command="{Binding DoneCommand}"
                 CommandParameter="{x:Int32 0}" />
         </StackLayout>
         <StackLayout Orientation="Horizontal">
             <Entry HorizontalOptions="FillAndExpand"
                 Placeholder="Goal"
-                Text="{Binding Goal2}" />
+                Text="{Binding Goal2EntryText}" />
             <Button Text="Done"
-                BackgroundColor="{Binding Goal2Done, Converter={StaticResource doneToColorConverter}}"
+                BackgroundColor="{Binding Goal2DoneButtonColor}"
                 Command="{Binding DoneCommand}"
                 CommandParameter="{x:Int32 1}" />
         </StackLayout>
         <StackLayout Orientation="Horizontal">
             <Entry HorizontalOptions="FillAndExpand"
                 Placeholder="Goal"
-                Text="{Binding Goal3}" />
+                Text="{Binding Goal3EntryText}" />
             <Button Text="Done"
-                BackgroundColor="{Binding Goal3Done, Converter={StaticResource doneToColorConverter}}"
+                BackgroundColor="{Binding Goal3DoneButtonColor}"
                 Command="{Binding DoneCommand}"
                 CommandParameter="{x:Int32 2}" />
         </StackLayout>
