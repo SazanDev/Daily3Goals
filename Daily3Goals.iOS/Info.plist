@@ -29,9 +29,9 @@
 	<string>Daily3Goals</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
-	<key>CFBundleVersion</key>
-	<string>3</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.2</string>
+	<string>0.3</string>
+	<key>CFBundleVersion</key>
+	<string>4</string>
 </dict>
 </plist>
