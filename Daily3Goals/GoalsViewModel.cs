@@ -13,26 +13,21 @@ namespace Daily3Goals
         Goal[] goals;
         DateTime date;
 
+        // TODO unit test to make sure goals is set correctly
         public GoalsViewModel(Goal[] newGoals, DateTime date)
         {
-            goals = new Goal[3];
+            goals = new Goal[MaxGoals];
             this.date = date;
 
-            if (newGoals == null) {
-                newGoals = goals;
+            for (int i = 0; i < MaxGoals; i++) {
+                goals[i] = new Goal {
+                    Date = date
+                };
             }
 
-            // Keep limit at 3 and always have 3
-            for (int i = 0; i < MaxGoals; i++) {
-                if (i < goals.Length) {
-                    // If newGoals have >= 3 goals
+            if (newGoals != null) {
+                for (int i = 0; i < MaxGoals && i < newGoals.Length; i++) {
                     goals[i] = newGoals[i];
-                } else {
-                    // Create new goal with passed in date if newGoals have < 3 goals
-                    Goal newGoal = new Goal {
-                        Date = date
-                    };
-                    goals[i] = newGoal;
                 }
             }
 
