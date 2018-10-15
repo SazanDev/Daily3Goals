@@ -35,5 +35,13 @@
                 Command="{Binding DoneCommand}"
                 CommandParameter="{x:Int32 2}" />
         </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Previous"
+                    Command="{Binding PreviousCommand}"
+                    HorizontalOptions="FillAndExpand"/>
+            <Button Text="Next"
+                    Command="{Binding NextCommand}"
+                    HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
     </StackLayout>
 </ContentPage>
