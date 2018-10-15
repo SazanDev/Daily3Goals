@@ -8,10 +8,12 @@ namespace Daily3Goals
     {
         GoalsViewModel viewModel;
         GoalRepository goalRepository;
+        DateTime currentDate;
 
         public GoalsPage()
         {
             goalRepository = new GoalRepository();
+            currentDate = DateTime.Now;
 
             InitializeComponent();
 
@@ -20,11 +22,21 @@ namespace Daily3Goals
 
         async Task InitializeViewModel()
         {
-            viewModel = new GoalsViewModel(await goalRepository.Load(), DateTime.Now);
+            viewModel = new GoalsViewModel(await goalRepository.Load(currentDate), currentDate);
 
             viewModel.GoalsChanged += (sender, goals) => {
                 // Probably shouldn't save right away on every single edit
                 goalRepository.Save(goals);
+            };
+
+            viewModel.PreviousDayRequested += async (sender, e) => {
+                currentDate = currentDate.AddDays(-1);
+                viewModel.UpdateDate(await goalRepository.Load(currentDate), currentDate);
+            };
+
+            viewModel.NextDayRequested += async (sender, e) => {
+                currentDate = currentDate.AddDays(1);
+                viewModel.UpdateDate(await goalRepository.Load(currentDate), currentDate);
             };
 
             BindingContext = viewModel;
