@@ -7,7 +7,7 @@
         <!-- Place new controls here -->
         <Label Text="Daily 3 Goals"
             HorizontalOptions="Center" />
-        <Label Text="{Binding DateText}" />
+        <Label Text="{Binding Date}" />
         <StackLayout Orientation="Horizontal">
             <Entry HorizontalOptions="FillAndExpand"
                 Placeholder="Goal"
