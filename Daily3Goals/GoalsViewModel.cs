@@ -16,20 +16,7 @@ namespace Daily3Goals
         // TODO unit test to make sure goals is set correctly
         public GoalsViewModel(Goal[] newGoals, DateTime date)
         {
-            goals = new Goal[MaxGoals];
-            this.date = date;
-
-            for (int i = 0; i < MaxGoals; i++) {
-                goals[i] = new Goal {
-                    Date = date
-                };
-            }
-
-            if (newGoals != null) {
-                for (int i = 0; i < MaxGoals && i < newGoals.Length; i++) {
-                    goals[i] = newGoals[i];
-                }
-            }
+            UpdateDate(newGoals, date);
 
             DoneCommand = new Command<int>(index => {
                 // Toggle the done property when the done button is pressed
@@ -42,12 +29,20 @@ namespace Daily3Goals
 
                 GoalsChanged?.Invoke(this, goals);
             });
+
+            PreviousCommand = new Command(() => PreviousDayRequested?.Invoke(this, EventArgs.Empty));
+
+            NextCommand = new Command(() => NextDayRequested?.Invoke(this, EventArgs.Empty));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         // Let Page know when a goal has changed. Passes all goals back for now.
         public event EventHandler<Goal[]> GoalsChanged;
+
+        public event EventHandler PreviousDayRequested;
+
+        public event EventHandler NextDayRequested;
 
         public string Date => date.ToString("dddd, MMMM dd, yyyy");
 
@@ -103,6 +98,31 @@ namespace Daily3Goals
         public Color Goal3DoneButtonColor => GetDoneColor(goals[2].Done);
 
         public ICommand DoneCommand { get; private set; }
+
+        public ICommand PreviousCommand { get; private set; }
+
+        public ICommand NextCommand { get; private set; }
+
+        public void UpdateDate(Goal[] newGoals, DateTime date)
+        {
+            goals = new Goal[MaxGoals];
+            this.date = date;
+
+            for (int i = 0; i < MaxGoals; i++) {
+                goals[i] = new Goal {
+                    Date = date
+                };
+            }
+
+            if (newGoals != null) {
+                for (int i = 0; i < MaxGoals && i < newGoals.Length; i++) {
+                    goals[i] = newGoals[i];
+                }
+            }
+
+            // This refreshes all the bindings
+            OnPropertyChanged("");
+        }
 
         // No need for DoneToColorConverter anymore
         Color GetDoneColor(bool done)
