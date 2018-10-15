@@ -20,7 +20,7 @@ namespace Daily3Goals
 
         async Task InitializeViewModel()
         {
-            viewModel = new GoalsViewModel(await goalRepository.Load(), DateTime.Now);
+            viewModel = new GoalsViewModel(await goalRepository.Load(DateTime.Now), DateTime.Now);
 
             viewModel.GoalsChanged += (sender, goals) => {
                 // Probably shouldn't save right away on every single edit
