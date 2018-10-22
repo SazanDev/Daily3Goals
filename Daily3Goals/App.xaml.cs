@@ -10,7 +10,7 @@ namespace Daily3Goals
         {
             InitializeComponent();
 
-            MainPage = new GoalsPage();
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()
